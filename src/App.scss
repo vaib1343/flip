@@ -1,0 +1,84 @@
+.App {
+    text-align: center;
+    background-color: #282c34;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+#app {
+    &[data-state="small"] {
+        .notification {
+            bottom: 10px;
+            left: 10px;
+
+            p {
+                display: none;
+            }
+        }
+    }
+
+    &[data-state="large"] {
+        .notification {
+            bottom: 10px;
+            top: 10px;
+            right: 10px;
+        }
+    }
+}
+
+.notification {
+    background-color: white;
+    position: absolute;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 300px;
+    cursor: pointer;
+    transform: none;
+    // transition-property: transform;
+    // transition-duration: var(--duration, 0s);
+    // transition-delay: var(--delay, 0s);
+    // transition-timing-function: var(--ease, linear);
+    transform-origin: top left;
+    transition: transform 0.8s ease;
+    &::before {
+        content: attr(style);
+    }
+
+    &[data-flipping]  {
+        transition: none;
+        transform: translate(calc(-1px * var(--dx)), calc(-1px * var(--dy)))
+            scale(calc(1 / var(--dw)), calc(1 / var(--dh)));
+    }
+}
+// .notification {
+//     position: absolute;
+//     left: 1rem;
+//     bottom: 1rem;
+//     border-radius: 1rem;
+//     padding: 2rem;
+//     background-color: white;
+//     cursor: pointer;
+//     p {
+//         display: none;
+//     }
+
+//     &[data-expand="true"] {
+//         top: 1rem;
+//         bottom: 1rem;
+//         right: 1rem;
+//         left: calc(100vw - 20rem);
+//         transform: translateX(calc(-1px * var(--dx)))
+//             translateY(calc(-1px * var(--dy))) scaleX(cal(1/ var(--dh)));
+
+//         transition: none;
+
+//         &[data-flip="true"] {
+//             transform: none;
+//             transition: all 1s ease-in-out;
+//         }
+//         p {
+//             display: inline-block;
+//         }
+//     }
+// }
